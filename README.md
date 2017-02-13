@@ -41,3 +41,12 @@ Exercises: To get more comfortable with this code, try augmenting it with skills
 * Allow the user to modify the topic with a drop down menu.
 
 Answer: [05-http.elm](https://github.com/cjen07/elm_exercises/blob/master/05-http.elm)
+
+### time
+
+Exercises:
+
+* Add a button to pause the clock, turning the Time subscription off.
+* Make the clock look nicer. Add an hour and minute hand. Etc.
+
+Answer: [06-clock.elm](https://github.com/cjen07/elm_exercises/blob/master/06-clock.elm)
