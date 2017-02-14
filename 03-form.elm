@@ -23,7 +23,7 @@ type alias Model =
   , age : String
   , password : String
   , passwordAgain : String
-  , hidden: Bool
+  , hidden : Bool
   }
 
 

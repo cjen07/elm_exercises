@@ -5,6 +5,8 @@ import Svg exposing (..)
 import Svg.Attributes exposing (..)
 import Random
 import List
+import Task
+import Process
 
 
 
@@ -24,12 +26,13 @@ main =
 type alias Model =
   { dieFace1 : Int
   , dieFace2 : Int
+  , buttonDisable : Bool
   }
 
 
 init : (Model, Cmd Msg)
 init =
-  (Model 1 1, Cmd.none)
+  (Model 1 1 False, Cmd.none)
 
 
 
@@ -37,19 +40,44 @@ init =
 
 
 type Msg
-  = Roll
+  = Click
+  | Roll
+  | Sleep Int
+  | Done
   | NewFace (Int, Int)
 
 
 update : Msg -> Model -> (Model, Cmd Msg)
 update msg model =
   case msg of
+    Click ->
+      ({ model | buttonDisable = True }, flip 10)
+
+    Sleep next ->
+      (model, flip next)
+
+    Done ->
+      ({ model | buttonDisable = False }, Cmd.none)
+
     Roll ->
       (model, Random.generate NewFace (Random.pair (Random.int 1 6) (Random.int 1 6)))
 
     NewFace (newFace1, newFace2) ->
-      (Model newFace1 newFace2, Cmd.none)
+      ({ model | dieFace1 = newFace1, dieFace2 = newFace2 }, Cmd.none)
 
+
+flip : Int -> Cmd Msg
+flip now =
+  let 
+    next = now - 1
+  in
+    case next of
+      0 -> 
+        Cmd.batch [Task.perform (\_ -> Roll) (Task.succeed ()), Task.perform (\_ -> Done) (Process.sleep 100)]
+
+      _ -> 
+        Cmd.batch [Task.perform (\_ -> Roll) (Task.succeed ()), Task.perform (\_ -> Sleep next) (Process.sleep 100)]
+        
 
 
 -- SUBSCRIPTIONS
@@ -77,7 +105,7 @@ view model =
     , br [] []
     , dieSvg model.dieFace2 
     , br [] []
-    , button [ onClick Roll ] [ Html.text "Roll" ]
+    , button [ disabled model.buttonDisable, onClick Click ] [ Html.text "Roll" ]
     ]
 
 mySrc : Int -> Html.Attribute msg
