@@ -1,6 +1,6 @@
 ## elm_exercises
-my answers to all exercises in  ["An Introduction to Elm"](https://guide.elm-lang.org/)
-except the ones in "union types" section, since it is using js not elm
+my answers to all exercises in  ["An Introduction to Elm"](https://guide.elm-lang.org/),
+except the ones in "union types" section, since it is to code in js having no connections with elm.
 
 ### button
 
@@ -29,7 +29,7 @@ Exercises: Here are some that build on stuff that has already been introduced:
 And here are some that require new skills:
 
 * Instead of showing an image of a die face, use the elm-lang/svg library to draw it yourself.
-* After you have learned about tasks and animation, have the die flip around randomly before they settle on a final value. (todo)
+* After you have learned about tasks and animation, have the die flip around randomly before they settle on a final value.
 
 Answer: [04-random.elm](https://github.com/cjen07/elm_exercises/blob/master/04-random.elm)
 
