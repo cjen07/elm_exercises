@@ -1,5 +1,6 @@
 ## elm_exercises
-my answers to exercises in  ["An Introduction to Elm"](https://guide.elm-lang.org/)
+my answers to all exercises in  ["An Introduction to Elm"](https://guide.elm-lang.org/)
+except the ones in "union types" section, since it is using js not elm
 
 ### button
 
